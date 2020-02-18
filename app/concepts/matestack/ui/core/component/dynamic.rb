@@ -69,12 +69,12 @@ module Matestack::Ui::Core::Component
       true
     end
 
-    def show(&block)
+    def show
       if respond_to? :prepare
         prepare
       end
       if respond_to? :response
-        response &block
+        response
         if @static
           render :response
         else
@@ -86,12 +86,12 @@ module Matestack::Ui::Core::Component
         end
       else
         if @static
-          render(view: :static, &block)
+          render(view: :static)
         else
           if @rerender
-            render(view: :dynamic, &block)
+            render(view: :dynamic)
           else
-            render(view: :dynamic_without_rerender, &block)
+            render(view: :dynamic_without_rerender)
           end
         end
       end
